@@ -1,0 +1,98 @@
+<!--
+  TEMPLATE NOTE: duplicate this file for new pages (e.g. philosophy.html,
+  travel.html). To reuse it:
+    1. Change the <title>.
+    2. Change the .page-title text.
+    3. Replace the paragraphs inside .page-body.
+    4. Add a matching <a href="...">Link</a> in the nav on every page
+       (in index.html and every page you duplicate this from).
+  Keep the header, .page-rule, and footer markup as-is.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — John Erinjery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-home" aria-label="Home">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M3 11.5 12 4l9 7.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M5.5 10v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <div data-include="navbar.html"></div>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page">
+      <h1 class="page-title">About</h1>
+      <div class="page-rule"></div>
+      <div class="page-body">
+        <p>
+          This is the other desk — a page over from the research site, where the
+          notebook margins live instead of the results. My work has me looking
+          at galaxy filaments and large-scale structure most days; this corner
+          is for the rest of it — philosophy, travel notes, half-formed thoughts
+          that don't belong in an abstract.
+        </p>
+        <p>
+          The look borrows from Raphael's <em>School of Athens</em> — a room
+          full of people who disagreed with each other constructively, under one
+          roof, without needing to resolve it. That's roughly the spirit I'd
+          like this space to keep: curious, a little unfinished, and not in a
+          hurry to arrive anywhere in particular.
+        </p>
+        <p>
+          Nothing here is final. Consider it a place to think out loud — updated
+          whenever there's something worth saying, and rewritten whenever there
+          isn't yet.
+        </p>
+      </div>
+    </main>
+
+    <div data-include="footer.html"></div>
+
+    <script>
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", isOpen);
+      });
+    </script>
+    <script>
+      document.querySelectorAll("[data-include]").forEach((el) =>
+        fetch(el.dataset.include)
+          .then((r) => r.text())
+          .then((html) => (el.innerHTML = html)),
+      );
+    </script>
+  </body>
+</html>

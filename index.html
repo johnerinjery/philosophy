@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>John Erinjery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-home" aria-label="Home">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M3 11.5 12 4l9 7.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M5.5 10v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <div data-include="navbar.html"></div>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="landing-frame">
+      <section class="hero">
+        <img
+          class="hero-img"
+          src="images/Raphael_School_of_Athens.jpg"
+          alt="The School of Athens, fresco by Raphael"
+        />
+        <div class="hero-scrim"></div>
+        <div class="hero-quote">
+          <div class="rule"></div>
+          <p><em>Festina Lente</em></p>
+        </div>
+      </section>
+
+      <section class="intro-bar">
+        <p class="intro-text">
+          <strong>Hi, I'm John Erinjery</strong>. I'm a physics research student
+          at <a href="https://iiserpune.ac.in">IISER Pune</a>. This space is for
+          me to put up and organize my writings on daily thoughts, philosophy,
+          readings and travel. I will be following a zettelkasten style of
+          note-taking here; it makes it easier for me to write on various topics
+          of interest. Find out more about the content and structure of this
+          site on the <a href="about.html">about page</a>. For my academic
+          portfolio, please visit my
+          <a href="https://johnerinjery.github.io" target="_blank"
+            >portfolio website</a
+          >.
+        </p>
+      </section>
+    </div>
+
+    <div data-include="footer.html"></div>
+
+    <script>
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", isOpen);
+      });
+    </script>
+    <script>
+      document.querySelectorAll("[data-include]").forEach((el) =>
+        fetch(el.dataset.include)
+          .then((r) => r.text())
+          .then((html) => (el.innerHTML = html)),
+      );
+    </script>
+  </body>
+</html>
